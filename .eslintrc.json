@@ -1,0 +1,15 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "rules": {
+    "no-console": 1,
+    "space-before-function-paren": ["warn", "always"],
+    "object-shorthand": ["off"],
+    "padded-blocks": ["off"],
+    "strict": ["off"]
+  },
+  "extends": "airbnb/base"
+}

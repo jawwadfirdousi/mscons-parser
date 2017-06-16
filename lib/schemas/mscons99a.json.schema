@@ -1,0 +1,2607 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "interchangeHeader": {
+      "edi_order": 1,
+      "$ref": "#/definitions/UNB",
+      "required": true
+    },
+
+
+
+
+
+    "messages": {
+      "edi_order": 2,
+      "type": "array",
+      "maxItems": 99999,
+      "required": true,
+      "items": {
+        "title": "Messages",
+        "type": "object",
+        "properties": {
+
+
+    "messageHeader": {
+      "edi_order": 2,
+      "$ref": "#/definitions/UNH",
+      "required": true
+    },
+    "beginningOfMessage": {
+      "edi_order": 3,
+      "$ref": "#/definitions/BGM"
+    },
+    "datetime": {
+      "edi_order": 4,
+      "allOf": [{
+        "properties": {
+          "functionCodeQualifier": {
+            "title": "Function Code Qualifier",
+            "edi_ref": "2005",
+            "edi_order": 1,
+            "description": "Code qualifying the function of a date, time or period. 137: Document issue date time.",
+            "type": "string",
+            "maxLength": 3,
+            "required": true
+          },
+
+
+          "value": {
+            "title": "Value",
+            "edi_ref": "2380",
+            "edi_order": 2,
+            "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+            "type": "datetime",
+            "maxLength": 35,
+            "format": 203
+          }
+        }
+      }, {
+        "$ref": "#/definitions/DTM"
+      }]
+    },
+    "segmentGroup1": {
+      "edi_order": 5,
+      "type": "array",
+      "maxItems": 9,
+      "items": {
+        "title": "Reference",
+        "type": "object",
+        "properties": {
+          "reference": {
+            "edi_order": 1,
+            "required": true,
+            "allOf": [{
+              "properties": {
+                "referenceCodeQualifier": {
+                  "title": "Reference Code Qualifier",
+                  "edi_ref": "1153",
+                  "edi_order": 1,
+                  "description": "Code qualifying a reference: [ (AAS) Transport contract document identifier, (ABE) Declarant's reference number, (ACW) Reference number to previous message, (AFB) Cargo manifest number, (AGO) Sender's reference to the original message, (MS) Message sender, (SI) SID (Shipper's identifying number for shipment)",
+                  "type": "string",
+                  "maxLength": 3,
+                  "required": true
+                }
+              }
+            }, {
+              "$ref": "#/definitions/RFF"
+            }]
+          },
+          "datetime": {
+            "edi_order": 2,
+            "allOf": [{
+              "properties": {
+                "functionCodeQualifier": {
+                  "title": "Function Code Qualifier",
+                  "edi_ref": "2005",
+                  "edi_order": 1,
+                  "description": "Code qualifying the function of a date, time or period. 137: Document issue date time.",
+                  "type": "string",
+                  "maxLength": 3,
+                  "required": true
+                },
+
+
+                "value": {
+                  "title": "Value",
+                  "edi_ref": "2380",
+                  "edi_order": 2,
+                  "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+                  "type": "datetime",
+                  "maxLength": 35,
+                  "format": 303
+                }
+              }
+            }, {
+              "$ref": "#/definitions/DTM"
+            }]
+          }
+        }
+      }
+    },
+    "segmentGroup2": {
+      "edi_order": 6,
+      "type": "array",
+      "maxItems": 99,
+      "items": {
+        "title": "Party",
+        "type": "object",
+        "properties": {
+          "nameAndAddress": {
+            "edi_order": 1,
+            "required": true,
+            "allOf": [{
+              "properties": {
+                "partyFunctionCodeQualifier": {
+                  "title": "Party Function Code Qualifier",
+                  "edi_ref": "3035",
+                  "edi_order": 1,
+                  "description": "Code giving specific meaning to a party: [ (CF) Container operator/lessee, (CZ) Consignor, (DEI) Means of transport operator, (GF) Slot charter party, (PQ) Certifying party, (SPC) Party responsible to obtain SOLAS Verified Gross Mass, (TR) Terminal operator, (WPA) Weighting party ]",
+                  "type": "string",
+                  "maxLength": 3,
+                  "required": true
+                }
+              }
+            }, {
+              "$ref": "#/definitions/NAD"
+            }]
+          },
+          "references": {
+            "edi_order": 2,
+            "type": "array",
+            "description": "A group of segments to specify the document or message to which the current message relates, and related dates and times.",
+            "maxItems": 9,
+            "items": {
+              "title": "Reference",
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "edi_order": 1,
+                  "required": true,
+                  "allOf": [{
+                    "properties": {
+                      "referenceCodeQualifier": {
+                        "title": "Reference Code Qualifier",
+                        "edi_ref": "1153",
+                        "edi_order": 1,
+                        "description": "Code qualifying a reference: [ (AAS) Transport contract document identifier, (ABE) Declarant's reference number, (ACW) Reference number to previous message, (AFB) Cargo manifest number, (AGO) Sender's reference to the original message, (MS) Message sender, (SI) SID (Shipper's identifying number for shipment)",
+                        "type": "string",
+                        "maxLength": 3,
+                        "required": true
+                      }
+                    }
+                  }, {
+                    "$ref": "#/definitions/RFF"
+                  }]
+                },
+                "datetime": {
+                  "edi_order": 2,
+                  "allOf": [{
+                    "properties": {
+                      "functionCodeQualifier": {
+                        "title": "Function Code Qualifier",
+                        "edi_ref": "2005",
+                        "edi_order": 1,
+                        "description": "Code qualifying the function of a date, time or period. 137: Document issue date time.",
+                        "type": "string",
+                        "maxLength": 3,
+                        "required": true
+                      },
+
+
+                      "value": {
+                        "title": "Value",
+                        "edi_ref": "2380",
+                        "edi_order": 2,
+                        "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+                        "type": "datetime",
+                        "maxLength": 35,
+                        "format": 303
+                      }
+                    }
+                  }, {
+                    "$ref": "#/definitions/DTM"
+                  }]
+                }
+              }
+            }
+          },
+          "contacts": {
+            "edi_order": 3,
+            "type": "array",
+            "maxItems": 9,
+            "items": {
+              "title": "Contact",
+              "type": "object",
+              "properties": {
+                "details": {
+                  "edi_order": 1,
+                  "required": true,
+                  "allOf": [{
+                    "properties": {
+                      "contactFunctionCode": {
+                        "title": "Contact Function Code",
+                        "edi_ref": "3139",
+                        "edi_order": 1,
+                        "description": "Code specifying the function of a contact (e.g. department or person). [ (BN) Certification contact, (CW) Confirmed with, (MS) Message sender contact ]",
+                        "type": "string",
+                        "maxLength": 3
+                      }
+                    }
+                  }, {
+                    "$ref": "#/definitions/CTA"
+                  }]
+                },
+                "communicationChannels": {
+                  "edi_order": 2,
+                  "type": "array",
+                  "maxItems": 9,
+                  "items": {
+                    "title": "Communication",
+                    "type": "object",
+                    "$ref": "#/definitions/COM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sectionControl": {
+      "edi_order": 7,
+      "required": true,
+      "$ref": "#/definitions/UNS"
+    },
+
+    "segmentGroup5": {
+      "edi_order": 8,
+      "type": "array",
+      "maxItems": 99999,
+      "required": true,
+      "items": {
+        "title": "Consumption Detail",
+        "type": "object",
+        "properties": {
+          "nameAndAddress": {
+            "edi_order": 1,
+            "required": true,
+            "maxItems": 1,
+            "allOf": [{
+              "properties": {
+                "partyFunctionCodeQualifier": {
+                  "title": "Party Function Code Qualifier",
+                  "edi_ref": "3035",
+                  "edi_order": 1,
+                  "description": "Code giving specific meaning to a party: [ (CF) Container operator/lessee, (CZ) Consignor, (DEI) Means of transport operator, (GF) Slot charter party, (PQ) Certifying party, (SPC) Party responsible to obtain SOLAS Verified Gross Mass, (TR) Terminal operator, (WPA) Weighting party ]",
+                  "type": "string",
+                  "maxLength": 3,
+                  "required": true
+                }
+              }
+            }, {
+              "$ref": "#/definitions/NAD"
+            }]
+          },
+
+          "segmentGroup6": {
+            "edi_order": 2,
+            "type": "array",
+            "maxItems": 99999,
+            "required": true,
+            "items": {
+              "title": "Place/Location Identification",
+              "type": "object",
+              "properties": {
+                "placeLocationIdentifications": {
+                  "edi_order": 1,
+                  "required": true,
+                  "$ref": "#/definitions/LOC"
+                },
+
+                "datetimes": {
+                  "edi_order": 2,
+                  "type": "array",
+                  "maxItems": 9,
+                  "items": {
+                    "title": "Date Time",
+                    "type": "object",
+                    "allOf": [{
+                      "properties": {
+                        "functionCodeQualifier": {
+                          "title": "Function Code Qualifier",
+                          "edi_ref": "2005",
+                          "edi_order": 1,
+                          "description": "Code qualifying the function of a date, time or period. [ (137) Document issue date time, (798) Transport equipment verified gross mass ascertained date/time, (225) Verification date ]",
+                          "type": "string",
+                          "required": true
+                        },
+
+
+                        "value": {
+                          "title": "Value",
+                          "edi_ref": "2380",
+                          "edi_order": 2,
+                          "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+                          "type": "datetime",
+                          "maxLength": 35,
+                          "format": 303
+                        }
+
+
+                      }
+                    }, {
+                      "$ref": "#/definitions/DTM"
+                    }]
+                  }
+                },
+
+                "segmentGroup7": {
+                  "edi_order": 3,
+                  "type": "array",
+                  "maxItems": 99,
+                  "items": {
+                    "title": "Reference",
+                    "type": "object",
+                    "properties": {
+
+                      "reference": {
+                        "edi_order": 1,
+                        "required": true,
+                        "allOf": [{
+                          "properties": {
+                            "referenceCodeQualifier": {
+                              "title": "Reference Code Qualifier",
+                              "edi_ref": "1153",
+                              "edi_order": 1,
+                              "description": "Code qualifying a reference: [ (AAS) Transport contract document identifier, (ABE) Declarant's reference number, (ACW) Reference number to previous message, (AFB) Cargo manifest number, (AGO) Sender's reference to the original message, (MS) Message sender, (SI) SID (Shipper's identifying number for shipment)",
+                              "type": "string",
+                              "maxLength": 3,
+                              "required": true
+                            }
+                          }
+                        }, {
+                          "$ref": "#/definitions/RFF"
+                        }]
+                      },
+
+                      "datetimes": {
+                        "edi_order": 2,
+                        "type": "array",
+                        "maxItems": 9,
+                        "items": {
+                          "title": "Date Time",
+                          "type": "object",
+                          "allOf": [{
+                            "properties": {
+                              "functionCodeQualifier": {
+                                "title": "Function Code Qualifier",
+                                "edi_ref": "2005",
+                                "edi_order": 1,
+                                "description": "Code qualifying the function of a date, time or period. [ (137) Document issue date time, (798) Transport equipment verified gross mass ascertained date/time, (225) Verification date ]",
+                                "type": "string",
+                                "required": true
+                              },
+
+
+                              "value": {
+                                "title": "Value",
+                                "edi_ref": "2380",
+                                "edi_order": 2,
+                                "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+                                "type": "datetime",
+                                "maxLength": 35,
+                                "format": 303
+                              }
+
+
+
+
+                            }
+                          }, {
+                            "$ref": "#/definitions/DTM"
+                          }]
+                        }
+                      }
+                    }
+                  }
+                },
+
+                "segmentGroup8": {
+                  "edi_order": 4,
+                  "type": "array",
+                  "maxItems": 99,
+                  "items": {
+                    "title": "Segment Group 8",
+                    "type": "object",
+                    "properties": {
+
+                      "Characteristic/class id": {
+                        "edi_order": 1,
+                        "required": true,
+                        "$ref": "#/definitions/CCI"
+                      },
+
+                      "datetimes": {
+                        "edi_order": 2,
+                        "type": "array",
+                        "maxItems": 99,
+                        "items": {
+                          "title": "Date Time",
+                          "type": "object",
+                          "allOf": [{
+                            "properties": {
+                              "functionCodeQualifier": {
+                                "title": "Function Code Qualifier",
+                                "edi_ref": "2005",
+                                "edi_order": 1,
+                                "description": "Code qualifying the function of a date, time or period. [ (137) Document issue date time, (798) Transport equipment verified gross mass ascertained date/time, (225) Verification date ]",
+                                "type": "string",
+                                "required": true
+                              },
+
+
+                              "value": {
+                                "title": "Value",
+                                "edi_ref": "2380",
+                                "edi_order": 2,
+                                "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+                                "type": "datetime",
+                                "maxLength": 35,
+                                "format": 303
+                              }
+                            }
+                          }, {
+                            "$ref": "#/definitions/DTM"
+                          }]
+                        }
+                      }
+                    }
+                  }
+                },
+
+                "segmentGroup9": {
+                  "edi_order": 5,
+                  "type": "array",
+                  "maxItems": 99999,
+                  "items": {
+                    "title": "Segment Group 9",
+                    "type": "object",
+                    "properties": {
+
+                      "LineItem": {
+                        "edi_order": 1,
+                        "required": true,
+                        "$ref": "#/definitions/LIN"
+                      },
+
+                      "ProductId": {
+                        "edi_order": 2,
+                        "maxItems": 9,
+                        "$ref": "#/definitions/PIA"
+                      },
+
+                      "ItemDescription": {
+                        "edi_order": 3,
+                        "maxItems": 9,
+                        "$ref": "#/definitions/IMD"
+                      },
+
+                      "priceDetails": {
+                        "edi_order": 4,
+                        "maxItems": 9,
+                        "$ref": "#/definitions/PRI"
+                      },
+
+                      "nameAndAddress": {
+                        "edi_order": 5,
+                        "maxItems": 9,
+                        "allOf": [{
+                          "properties": {
+                            "partyFunctionCodeQualifier": {
+                              "title": "Party Function Code Qualifier",
+                              "edi_ref": "3035",
+                              "edi_order": 1,
+                              "type": "string",
+                              "maxLength": 3,
+                              "required": true
+                            }
+                          }
+                        }, {
+                          "$ref": "#/definitions/NAD"
+                        }]
+                      },
+
+                      "MonetaryAmount": {
+                        "edi_order": 6,
+                        "maxItems": 9,
+                        "$ref": "#/definitions/MOA"
+                      },
+
+                      "segmentGroup10": {
+                        "edi_order": 7,
+                        "type": "array",
+                        "maxItems": 9999,
+                        "required": true,
+                        "items": {
+                          "title": "Segment Group 10",
+                          "type": "object",
+                          "properties": {
+
+                            "quantity": {
+                              "edi_order": 1,
+                              "required": true,
+                              "$ref": "#/definitions/QTY"
+                            },
+
+                            "datetimes": {
+                              "edi_order": 2,
+                              "type": "array",
+                              "maxItems": 9,
+                              "items": {
+                                "title": "Date Time",
+                                "type": "object",
+                                "allOf": [{
+                                  "properties": {
+                                    "functionCodeQualifier": {
+                                      "title": "Function Code Qualifier",
+                                      "edi_ref": "2005",
+                                      "edi_order": 1,
+                                      "description": "Code qualifying the function of a date, time or period. [ (137) Document issue date time, (798) Transport equipment verified gross mass ascertained date/time, (225) Verification date ]",
+                                      "type": "string",
+                                      "required": true
+                                    },
+
+
+                                    "value": {
+                                      "title": "Value",
+                                      "edi_ref": "2380",
+                                      "edi_order": 2,
+                                      "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+                                      "type": "datetime",
+                                      "maxLength": 35,
+                                      "format": 303
+                                    }
+                                  }
+                                }, {
+                                  "$ref": "#/definitions/DTM"
+                                }]
+                              }
+                            }
+                          }
+                        }
+                      },
+
+                      "segmentGroup11": {
+                        "edi_order": 8,
+                        "type": "array",
+                        "maxItems": 99,
+                        "items": {
+                          "title": "Segment Group 11",
+                          "type": "object",
+                          "properties": {
+
+                            "CharacteristicClassId": {
+                              "edi_order": 1,
+                              "required": true,
+                              "$ref": "#/definitions/CCI"
+                            },
+
+
+                            "measurement": {
+                              "edi_order": 2,
+                              "maxItems": 99,
+                              "$ref": "#/definitions/MEA"
+                            },
+
+                            "datetimes": {
+                              "edi_order": 2,
+                              "type": "array",
+                              "maxItems": 9,
+                              "items": {
+                                "title": "Date Time",
+                                "type": "object",
+                                "allOf": [{
+                                  "properties": {
+                                    "functionCodeQualifier": {
+                                      "title": "Function Code Qualifier",
+                                      "edi_ref": "2005",
+                                      "edi_order": 1,
+                                      "description": "Code qualifying the function of a date, time or period. [ (137) Document issue date time, (798) Transport equipment verified gross mass ascertained date/time, (225) Verification date ]",
+                                      "type": "string",
+                                      "required": true
+                                    },
+
+
+                                    "value": {
+                                      "title": "Value",
+                                      "edi_ref": "2380",
+                                      "edi_order": 2,
+                                      "description": "The value of a date, a date and time, a time or of a period in a specified representation.",
+                                      "type": "datetime",
+                                      "maxLength": 35,
+                                      "format": 303
+                                    }
+                                  }
+                                }, {
+                                  "$ref": "#/definitions/DTM"
+                                }]
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                    }
+                  }
+                }
+
+              }
+            }
+          }
+
+        }
+      }
+    },
+
+    "messageTrailer": {
+      "edi_order": 9,
+      "$ref": "#/definitions/UNT",
+      "required": true
+    }
+
+
+  }
+}
+},
+
+
+
+
+    "interchangeTrailer": {
+      "edi_order": 1000,
+      "$ref": "#/definitions/UNZ",
+      "required": true
+    }
+},
+  "definitions": {
+
+    "UNB": {
+      "title": "Interchange Header",
+      "edi_tag": "UNB",
+      "type": "object",
+      "properties": {
+        "syntax": {
+          "title": "Syntax",
+          "edi_ref": "S001",
+          "edi_order": 2,
+          "description": "Identification of the agency controlling the syntax and indication of syntax level.",
+          "type": "object",
+          "required": true,
+          "properties": {
+            "syntaxIdentifier": {
+              "title": "Syntax Identifier",
+              "edi_ref": "0001",
+              "edi_order": 1,
+              "description": "Coded identification of the agency controlling a syntax and syntax level used in an interchange.",
+              "type": "string",
+              "default": "UNOC",
+              "enum": [
+                "UNOC"
+              ],
+              "required": true,
+              "maxLength": 4
+            },
+            "syntaxVersionNumber": {
+              "title": "Syntax Type Version Number",
+              "edi_ref": "0002",
+              "edi_order": 2,
+              "description": "Version number of the syntax identified in the syntax identifier (0001).",
+              "type": "string",
+              "default": "3",
+              "required": true,
+              "enum": [
+                "3"
+              ],
+              "required": true,
+              "maxLength": 1
+            }
+          }
+        },
+
+        "interchangeSender": {
+          "title": "Interchange Sender",
+          "edi_ref": "S002",
+          "edi_order": 2,
+          "description": "Identification of the sender of the interchange.",
+          "type": "object",
+          "required": true,
+          "properties": {
+            "senderIdentification": {
+              "title": "Sender Identification",
+              "edi_ref": "0004",
+              "edi_order": 1,
+              "description": "Name or coded representation of the sender of a data interchange.",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "partnerIdentificationCodeQualifier": {
+              "title": "Partner Identification Code Qualifier",
+              "edi_ref": "0007",
+              "edi_order": 2,
+              "description": "Version number of the syntax identified in the syntax identifier (0001).",
+              "type": "string",
+              "default": "ZZZ",
+              "required": true,
+              "enum": [
+                "ZZZ"
+              ],
+              "required": true,
+              "maxLength": 4
+            },
+            "reverseRouting": {
+              "title": "Address for reverse routing",
+              "edi_ref": "0008",
+              "edi_order": 3,
+              "description": "Address for reverse routing",
+              "type": "string",
+              "maxLength": 14
+            }
+          }
+        },
+
+        "interchangeRecipient": {
+          "title": "Interchange Recipient",
+          "edi_ref": "S003",
+          "edi_order": 3,
+          "description": "Identification of the Recipient of the interchange.",
+          "type": "object",
+          "required": true,
+          "properties": {
+            "recipientIdentification": {
+              "title": "Recipient Identification",
+              "edi_ref": "0010",
+              "edi_order": 1,
+              "description": "Name or coded representation of the recipient of a data interchange.",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "partnerIdentificationCodeQualifier": {
+              "title": "Partner Identification Code Qualifier",
+              "edi_ref": "0007",
+              "edi_order": 2,
+              "description": "Version number of the syntax identified in the syntax identifier (0001).",
+              "type": "string",
+              "default": "ZZZ",
+              "required": true,
+              "enum": [
+                "ZZZ"
+              ],
+              "required": true,
+              "maxLength": 4
+            },
+            "routingAddress": {
+              "title": "Address for reverse routing",
+              "edi_ref": "0014",
+              "edi_order": 3,
+              "description": "Address for reverse routing",
+              "type": "string",
+              "maxLength": 14
+            }
+          }
+        },
+
+        "datetimeOfPreparation": {
+          "title": "Date and Time of Preparation",
+          "edi_ref": "S004",
+          "edi_order": 4,
+          "description": "Date and time of preparation of the interchange.",
+          "type": "object",
+          "required": true,
+          "properties": {
+            "dateOfPreparation": {
+              "title": "Date of preparation",
+              "edi_ref": "0017",
+              "edi_order": 1,
+              "description": "Name or coded representation of the recipient of a data interchange.",
+              "type": "string",
+              "required": true,
+              "format": "[0-9]{6}"
+            },
+            "timeOfPreparation": {
+              "title": "Time of preparation",
+              "edi_ref": "0019",
+              "edi_order": 1,
+              "description": "Name or coded representation of the recipient of a data interchange.",
+              "type": "string",
+              "required": true,
+              "format": "[0-9]{4}"
+            }
+          }
+        },
+
+        "interchangeControlReference": {
+          "title": "Interchange Control Reference",
+          "edi_ref": "0020",
+          "edi_order": 5,
+          "description": "Unique reference assigned by the sender to an interchange.",
+          "type": "string",
+          "required": true,
+          "maxLength": 14
+        }
+      }
+    },
+    "UNS": {
+      "title": "Section Control",
+      "edi_tag": "UNS",
+      "type": "object",
+      "properties": {
+        "SectionIdentification": {
+          "title": "Section Identification",
+          "edi_ref": "0081",
+          "edi_order": 1,
+          "description": "Count either of the number of messages or, if used, of the number of functional groups in an interchange.",
+          "type": "string",
+          "required": true,
+          "maximum": 1,
+          "minimum": 1
+        }
+      }
+    },
+    "UNH": {
+      "title": "Message Header",
+      "edi_tag": "UNH",
+      "type": "object",
+      "properties": {
+        "messageReferenceNumber": {
+          "title": "Message Reference Number",
+          "edi_ref": "0062",
+          "edi_order": 1,
+          "description": "Unique message reference assigned by the sender",
+          "type": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "messageIdentifier": {
+          "title": "Message Identifier",
+          "edi_ref": "S009",
+          "edi_order": 2,
+          "description": "Identification of the type, version etc. of the message being interchanged",
+          "type": "object",
+          "required": true,
+          "properties": {
+            "messageTypeIdentifier": {
+              "title": "Message Type Identifier",
+              "edi_ref": "0065",
+              "edi_order": 1,
+              "description": "Code identifying a type of message and assigned by its controlling agency.",
+              "type": "string",
+              "enum": [
+                "MSCONS"
+              ],
+              "required": true,
+              "maxLength": 6
+            },
+            "messageTypeVersionNumber": {
+              "title": "Message Type Version Number",
+              "edi_ref": "0052",
+              "edi_order": 2,
+              "description": "Version number of a message type.",
+              "type": "string",
+              "default": "D",
+              "required": true,
+              "maxLength": 3
+            },
+            "messageTypeReleaseNumber": {
+              "title": "Message Type Release Number",
+              "edi_ref": "0054",
+              "edi_order": 3,
+              "description": "Release number within the current message type version number (messageTypeVersionNumber).",
+              "type": "string",
+              "default": "16A",
+              "required": true,
+              "maxLength": 3
+            },
+            "controllingAgency": {
+              "title": "Controlling Agency",
+              "edi_ref": "0051",
+              "edi_order": 4,
+              "description": "Code identifying the agency controlling the specification, maintenance and publication of the message type.",
+              "type": "string",
+              "enum": [
+                "UN"
+              ],
+              "default": "UN",
+              "required": true,
+              "maxLength": 2
+            },
+            "associationAssignedCode": {
+              "title": "Association Assigned Code",
+              "edi_ref": "0057",
+              "edi_order": 5,
+              "description": "Code, assigned by the association responsible for the design and maintenance of the message type concerned, which further identifies the message.",
+              "type": "string",
+              "maxLength": 6
+            }
+          }
+        },
+        "commonAccessReference": {
+          "title": "Common Access Reference",
+          "edi_ref": "0068",
+          "edi_order": 3,
+          "description": "Reference serving as a key to relate all subsequent transfers of data to the same business case or file.",
+          "type": "string",
+          "maxLength": 35
+        },
+        "transferStatus": {
+          "title": "Transfer Status",
+          "edi_ref": "S010",
+          "edi_order": 4,
+          "description": "Statement that the message is one in a sequence of transfers relating to the same topic",
+          "type": "object",
+          "properties": {
+            "sequenceMessageTransferNumber": {
+              "title": "Sequence Message Transfer Number",
+              "edi_ref": "0070",
+              "edi_order": 1,
+              "description": "Number assigned by the sender indicating that the message is an addition or change of a previously sent message relating to the same topic.",
+              "type": "number",
+              "required": true,
+              "maximum": 99
+            },
+            "firstLastSequenceMessageTransferIndication": {
+              "title": "First/last sequence message transfer indication",
+              "edi_ref": "0073",
+              "edi_order": 2,
+              "description": "Indication used for the first and last message in a sequence of the same type of message relating to the same topic.",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "BGM": {
+      "title": "Beginning of Message",
+      "edi_tag": "BGM",
+      "type": "object",
+      "properties": {
+        "messageName": {
+          "title": "Document / Message Name",
+          "edi_ref": "C002",
+          "edi_order": 1,
+          "description": "Identification of a type of document/message by code or name. Code preferred.",
+          "type": "object",
+          "properties": {
+            "documentNameCode": {
+              "title": "Document Name Code",
+              "edi_ref": "1001",
+              "edi_order": 1,
+              "description": "Code specifying the document name.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListIdentificationCode": {
+              "title": "Code List Identification Code",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "description": "Code identifying a user or association maintained code list.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListResponsibleAgencyCode": {
+              "title": "Code List Responsible Agency Code",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "description": "Code specifying the agency responsible for a code list.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "documentName": {
+              "title": "Document Name",
+              "edi_ref": "1000",
+              "edi_order": 4,
+              "description": "Name of Document.",
+              "type": "string",
+              "maxLength": 35
+            }
+          }
+        },
+        "messageIdentification": {
+          "title": "Document / Message Identification",
+          "edi_ref": "C106",
+          "edi_order": 2,
+          "description": "Identification of a document/message by its number and eventually its version or revision.",
+          "type": "object",
+          "properties": {
+            "documentIdentifier": {
+              "title": "Document Identifier",
+              "edi_ref": "1004",
+              "edi_order": 1,
+              "description": "To identify a document.",
+              "type": "string",
+              "maxLength": 70
+            },
+            "versionIdentifier": {
+              "title": "Version Identifier",
+              "edi_ref": "1056",
+              "edi_order": 2,
+              "description": "To identify a version.",
+              "type": "string",
+              "maxLength": 9
+            },
+            "revisionIdentifier": {
+              "title": "Revision Identifier",
+              "edi_ref": "1060",
+              "edi_order": 3,
+              "description": "Revision identifier.",
+              "type": "string",
+              "maxLength": 6
+            }
+          }
+        },
+        "messageFunctionCode": {
+          "title": "Message Function Code",
+          "edi_ref": "1225",
+          "edi_order": 3,
+          "description": "Code indicating the function of the message. [ (1) Cancellation, (5) Replace, (9) Original ]",
+          "type": "string",
+          "maxLength": 3
+        },
+        "responseTypeCode": {
+          "title": "Response Type Code",
+          "edi_ref": "4343",
+          "edi_order": 4,
+          "description": "Code specifying the type of acknowledgment required or transmitted.",
+          "type": "string",
+          "maxLength": 3
+        },
+        "documentStatusCode": {
+          "title": "Document Status Code",
+          "edi_ref": "1373",
+          "edi_order": 5,
+          "description": "Code specifying the status of a document.",
+          "type": "string",
+          "maxLength": 3
+        },
+        "languageNameCode": {
+          "title": "Language Name Code",
+          "edi_ref": "3453",
+          "edi_order": 6,
+          "description": "Code specifying the language name.",
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+    "DTM": {
+      "title": "Datetime",
+      "description": "Date and/or time, or period relevant to the specified date/time/period type.",
+      "edi_tag": "DTM",
+      "edi_ref": "C507",
+      "type": "object",
+      "properties": {
+        "format": {
+          "title": "Format Code",
+          "edi_ref": "2379",
+          "edi_order": 3,
+          "description": "Code specifying the representation of a date, time or period. [ (203) CCYYMMDDHHMM, (303) CCYYMMDDHHMMZZZ ]",
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+    "RFF": {
+      "title": "Reference",
+      "edi_tag": "RFF",
+      "edi_ref": "C506",
+      "type": "object",
+      "properties": {
+        "referenceIdentifier": {
+          "title": "Reference Identifier",
+          "edi_ref": "1154",
+          "edi_order": 2,
+          "description": "Identifies a reference.",
+          "type": "string",
+          "maxLength": 70
+        },
+        "documentLineIdentifier": {
+          "title": "Document Line Identifier",
+          "edi_ref": "1156",
+          "edi_order": 3,
+          "description": "To identify a line of a document.",
+          "type": "string",
+          "maxLength": 6
+        },
+        "versionIdentifier": {
+          "title": "Version Identifier",
+          "edi_ref": "1056",
+          "edi_order": 4,
+          "description": "To identify a version.",
+          "type": "string",
+          "maxLength": 9
+        },
+        "revisionIdentifier": {
+          "title": "Revision Identifier",
+          "edi_ref": "1060",
+          "edi_order": 5,
+          "description": "To identify a revision.",
+          "type": "string",
+          "maxLength": 6
+        }
+      }
+    },
+    "LOC": {
+      "title": "Location",
+      "edi_tag": "LOC",
+      "type": "object",
+      "properties": {
+        "locationFunctionCodeQualifier": {
+          "title": "Location Function Code Qualifier",
+          "edi_ref": "3227",
+          "edi_order": 1,
+          "description": "Code identifying the function of a location.",
+          "type": "string",
+          "maxLength": 3
+        },
+        "locationIdentification": {
+          "title": "Location Identification",
+          "edi_ref": "C517",
+          "edi_order": 2,
+          "description": "Identification of a location by code or name.",
+          "type": "object",
+          "properties": {
+            "locationIdentifier": {
+              "title": "Location Identifier",
+              "edi_ref": "3225",
+              "edi_order": 1,
+              "description": "To identify a location.",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "codeListIdentificationCode": {
+              "title": "Code List Identification Code",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "description": "Code identifying a user or association maintained code list.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListResponsibleAgencyCode": {
+              "title": "Code List Responsible Agency Code",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "description": "Code specifying the agency responsible for a code list.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "locationName": {
+              "title": "Location Name",
+              "edi_ref": "3224",
+              "edi_order": 4,
+              "description": "Name of the location.",
+              "type": "string",
+              "maxLength": 256
+            }
+          }
+        },
+        "relatedLocationOneIdentification": {
+          "title": "Related Location One Identification",
+          "edi_ref": "C519",
+          "edi_order": 3,
+          "description": "Identification of the first related location by code or name.",
+          "type": "object",
+          "properties": {
+            "firstRelatedlocationIdentifier": {
+              "title": "First Related Location Identifier",
+              "edi_ref": "3223",
+              "edi_order": 1,
+              "description": "To identify a first related location.",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "codeListIdentificationCode": {
+              "title": "Code List Identification Code",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "description": "Code identifying a user or association maintained code list.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListResponsibleAgencyCode": {
+              "title": "Code List Responsible Agency Code",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "description": "Code specifying the agency responsible for a code list.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "firstRelatedLocationName": {
+              "title": "First Related Location Name",
+              "edi_ref": "3222",
+              "edi_order": 4,
+              "description": "Name of first related location.",
+              "type": "string",
+              "maxLength": 256
+            }
+          }
+        },
+        "relatedLocationTwodentification": {
+          "title": "Related Location Two Identification",
+          "edi_ref": "C553",
+          "edi_order": 4,
+          "description": "Identification of the second location by code or name.",
+          "type": "object",
+          "properties": {
+            "secondRelatedlocationIdentifier": {
+              "title": "Second Related Location Identifier",
+              "edi_ref": "3233",
+              "edi_order": 1,
+              "description": "To identify the second related location.",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "codeListIdentificationCode": {
+              "title": "Code List Identification Code",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "description": "Code identifying a user or association maintained code list.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListResponsibleAgencyCode": {
+              "title": "Code List Responsible Agency Code",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "description": "Code specifying the agency responsible for a code list.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "secondRelatedLocationName": {
+              "title": "First Related Location Name",
+              "edi_ref": "3232",
+              "edi_order": 4,
+              "description": "Name of the second related location.",
+              "type": "string",
+              "maxLength": 256
+            }
+          }
+        },
+        "relationCode": {
+          "title": "Relation Code",
+          "edi_ref": "5479",
+          "edi_order": 5,
+          "description": "Code specifying a relation.",
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+    "MEA": {
+      "title": "Measurements",
+      "edi_tag": "MEA",
+      "type": "object",
+      "properties": {
+        "measurementPurposeCodeQualifier": {
+          "title": "Party Function Code Qualifier",
+          "edi_ref": "6311",
+          "edi_order": 1,
+          "description": "Code qualifying the purpose of the measurement: [ (AAE) Measurement ]",
+          "type": "string",
+          "maxLength": 3,
+          "required": true,
+          "default": "AAE"
+        },
+        "measurementDetails": {
+          "title": "Measurement Details",
+          "edi_ref": "C502",
+          "edi_order": 2,
+          "description": "Identification of measurement type.",
+          "type": "object",
+          "properties": {
+            "measuredAttributeCode": {
+              "title": "Measured Attribute Code",
+              "edi_ref": "6313",
+              "edi_order": 1,
+              "description": "Code specifying the attribute measured: [ (AET) Transport equipment gross weight, (VGM) Verified gross mass - transport equipment verified gross ]",
+              "type": "string",
+              "maxLength": 3,
+              "required": true
+            },
+            "measurementSignificanceCode": {
+              "title": "Measurement Significance Code",
+              "edi_ref": "6321",
+              "edi_order": 2,
+              "description": "Code specifying the significance of a measurement.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "nondiscreteMeasurementNameCode": {
+              "title": "Non-discrete Measurement Name Code",
+              "edi_ref": "6155",
+              "edi_order": 3,
+              "description": "Code specifying the name of a non-discrete measurement.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "nondiscreteMeasurementName": {
+              "title": "Non-discrete Measurement Name",
+              "edi_ref": "6154",
+              "edi_order": 4,
+              "description": "Name of a non-discrete measurement.",
+              "type": "string",
+              "maxLength": 70
+            }
+          }
+        },
+        "valueRange": {
+          "title": "Value/Range",
+          "edi_ref": "C174",
+          "edi_order": 3,
+          "description": "Measurement value and relevant minimum and maximum values of the measurement range.",
+          "type": "object",
+          "properties": {
+            "measurementUnitCode": {
+              "title": "Measurement Unit Code",
+              "edi_ref": "6411",
+              "edi_order": 1,
+              "description": "Code specifying the unit of measurement: [ (KGM) Kilogram, (LBR) Pounds]",
+              "type": "string",
+              "maxLength": 8,
+              "required": true
+            },
+            "measure": {
+              "title": "Measure",
+              "edi_ref": "6314",
+              "edi_order": 2,
+              "description": "To specify the value of a measurement.",
+              "type": "string",
+              "maxLength": 18
+            },
+            "rangeMinimunQuantity": {
+              "title": "Range Minimun Quantity",
+              "edi_ref": "6162",
+              "edi_order": 3,
+              "description": "To specify the minimum value of a range.",
+              "type": "integer",
+              "maxLength": 999999999999999999
+            },
+            "rangeMaximunQuantity": {
+              "title": "Range Maximun Quantity",
+              "edi_ref": "6152",
+              "edi_order": 4,
+              "description": "To specify the maximum value of a range.",
+              "type": "integer",
+              "maxLength": 999999999999999999
+            },
+            "significantDigitsQuantity": {
+              "title": "Significant Digits Quantity",
+              "edi_ref": "6432",
+              "edi_order": 5,
+              "description": "Count of the number of significant digits.",
+              "type": "integer",
+              "maximum": 99
+            }
+          }
+        },
+        "surfaceLayerCode": {
+          "title": "Surface Layer Code",
+          "edi_ref": "7383",
+          "edi_order": 4,
+          "description": "Code specifying the surface or layer of an object.",
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+    "NAD": {
+      "title": "Name and Address",
+      "edi_tag": "NAD",
+      "type": "object",
+      "properties": {
+        "partyIdentificationDetails": {
+          "title": "Party Identification Details",
+          "edi_ref": "C082",
+          "edi_order": 2,
+          "description": "Identification of a transaction party by code.",
+          "type": "object",
+          "properties": {
+            "partyIdentifier": {
+              "title": "Party Identifier",
+              "edi_ref": "3039",
+              "edi_order": 1,
+              "description": "Code specifying the identity of a party.",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "codeListIdentificationCode": {
+              "title": "Code List Identification Code",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "description": "Code identifying a user or association maintained code list.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListResponsibleAgencyCode": {
+              "title": "Code List Responsible Agency Code",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "description": "Code specifying the agency responsible for a code list.",
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+        "address": {
+          "title": "Address",
+          "edi_ref": "C058",
+          "edi_order": 3,
+          "description": "Unstructured name and address: one to five lines",
+          "type": "object",
+          "properties": {
+            "address1": {
+              "title": "Address 1",
+              "edi_ref": "3124",
+              "edi_order": 1,
+              "description": "Free form description of a name and address line.",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "address2": {
+              "title": "Address 2",
+              "edi_ref": "3124",
+              "edi_order": 2,
+              "description": "Free form description of a name and address line.",
+              "type": "string",
+              "maxLength": 35
+            },
+            "address3": {
+              "title": "Address 3",
+              "edi_ref": "3124",
+              "edi_order": 3,
+              "description": "Free form description of a name and address line.",
+              "type": "string",
+              "maxLength": 35
+            },
+            "address4": {
+              "title": "Address 4",
+              "edi_ref": "3124",
+              "edi_order": 4,
+              "description": "Free form description of a name and address line.",
+              "type": "string",
+              "maxLength": 35
+            },
+            "address5": {
+              "title": "Address 5",
+              "edi_ref": "3124",
+              "edi_order": 5,
+              "description": "Free form description of a name and address line.",
+              "type": "string",
+              "maxLength": 35
+            }
+          }
+        },
+        "partyName": {
+          "title": "Party Name",
+          "edi_ref": "C080",
+          "edi_order": 4,
+          "description": "Identification of a transaction party by name, one to five lines. Party name may be formatted.",
+          "type": "object",
+          "properties": {
+            "partyName1": {
+              "title": "Party Name 1",
+              "edi_ref": "3036",
+              "edi_order": 1,
+              "description": "Name of a party.",
+              "type": "string",
+              "required": true,
+              "maxLength": 70
+            },
+            "partyName2": {
+              "title": "Party Name 2",
+              "edi_ref": "3036",
+              "edi_order": 2,
+              "description": "Name of a party.",
+              "type": "string",
+              "maxLength": 70
+            },
+            "partyName3": {
+              "title": "Party Name 3",
+              "edi_ref": "3036",
+              "edi_order": 3,
+              "description": "Name of a party.",
+              "type": "string",
+              "maxLength": 70
+            },
+            "partyName4": {
+              "title": "Party Name 4",
+              "edi_ref": "3036",
+              "edi_order": 4,
+              "description": "Name of a party.",
+              "type": "string",
+              "maxLength": 70
+            },
+            "partyName5": {
+              "title": "Party Name 5",
+              "edi_ref": "3036",
+              "edi_order": 5,
+              "description": "Name of a party.",
+              "type": "string",
+              "maxLength": 70
+            },
+            "partyNameFormatCode": {
+              "title": "Party Name Format Code",
+              "edi_ref": "3045",
+              "edi_order": 5,
+              "description": "Code specifying the representation of a party name. Refer to D.13B Data Element Dictionary for acceptable code values.",
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+        "street": {
+          "title": "Street",
+          "edi_ref": "C059",
+          "edi_order": 5,
+          "description": "Street address and/or PO Box number in a structured address: one to four lines.",
+          "type": "object",
+          "properties": {
+            "street1": {
+              "title": "Street 1",
+              "edi_ref": "3042",
+              "edi_order": 1,
+              "description": "Street and number or post office box identifier",
+              "type": "string",
+              "required": true,
+              "maxLength": 35
+            },
+            "street2": {
+              "title": "Street 2",
+              "edi_ref": "3042",
+              "edi_order": 2,
+              "description": "Street and number or post office box identifier",
+              "type": "string",
+              "maxLength": 35
+            },
+            "street3": {
+              "title": "Street 3",
+              "edi_ref": "3042",
+              "edi_order": 3,
+              "description": "Street and number or post office box identifier",
+              "type": "string",
+              "maxLength": 35
+            },
+            "street4": {
+              "title": "Street 4",
+              "edi_ref": "3042",
+              "edi_order": 4,
+              "description": "Street and number or post office box identifier",
+              "type": "string",
+              "maxLength": 35
+            }
+          }
+        },
+        "cityName": {
+          "title": "City Name",
+          "edi_ref": "3164",
+          "edi_order": 6,
+          "description": "Name of a city.",
+          "type": "string",
+          "maxLength": 35
+        },
+        "countrySubdivisionDetails": {
+          "title": "Country Subdivision Details",
+          "edi_ref": "C819",
+          "edi_order": 7,
+          "description": "To specify a country subdivision, such as state, canton, county, prefecture.",
+          "type": "object",
+          "properties": {
+            "countrySubdivisionIdentifier": {
+              "title": "Country Subdivision Identifier",
+              "edi_ref": "3229",
+              "edi_order": 1,
+              "description": "To identify a country subdivision, such as state, canton, county, prefecture.",
+              "type": "string",
+              "maxLength": 9
+            },
+            "codeListIdentificationCode": {
+              "title": "Code List Identification Code",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "description": "Code identifying a user or association maintained code list.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListResponsibleAgencyCode": {
+              "title": "Code List Responsible Agency Code",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "description": "Code specifying the agency responsible for a code list. Refer to D.13B Data Element Dictionary for acceptable code values.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "countrySubdivisionName": {
+              "title": "Country Subdivision Name",
+              "edi_ref": "3228",
+              "edi_order": 4,
+              "description": "Name of a country subdivision, such as state, canton, county, prefecture.",
+              "type": "string",
+              "maxLength": 70
+            }
+          }
+        },
+        "postalIdentificationCode": {
+          "title": "Postal Identification Code",
+          "edi_ref": "3251",
+          "edi_order": 8,
+          "description": "Code specifying the postal zone or address.",
+          "type": "string",
+          "maxLength": 17
+        },
+        "countryIdentifier": {
+          "title": "Country Identifier",
+          "edi_ref": "3207",
+          "edi_order": 9,
+          "description": "Identification of the name of the country or other geographical entity as defined in ISO 3166-1 and UN/ECE Recommendation 3.",
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+    "CTA": {
+      "title": "Contact Information",
+      "edi_tag": "CTA",
+      "type": "object",
+      "properties": {
+        "contactDetails": {
+          "title": "Contact Details",
+          "edi_ref": "C056",
+          "edi_order": 2,
+          "description": "Code and/or name of a contact such as a department or employee. Code preferred.",
+          "type": "object",
+          "properties": {
+            "contactIdentifier": {
+              "title": "Contact Identifier",
+              "edi_ref": "3413",
+              "edi_order": 1,
+              "description": "To identify a contact, such as a department or employee.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "contactName": {
+              "title": "Contact Name",
+              "edi_ref": "3412",
+              "edi_order": 2,
+              "description": "Name of a contact, such as a department or employee.",
+              "type": "string",
+              "maxLength": 256
+            }
+          }
+        }
+      }
+    },
+    "COM": {
+      "title": "Communication Contact",
+      "edi_tag": "COM",
+      "edi_ref": "C076",
+      "type": "object",
+      "properties": {
+        "communicationAddressIdentifier": {
+          "title": "Communication Address Identifier",
+          "edi_ref": "3148",
+          "edi_order": 1,
+          "description": "To identify a communication address.",
+          "type": "string",
+          "required": true,
+          "maxLength": 512
+        },
+        "communicationMeansTypeCode": {
+          "title": "Communication Means Type Code",
+          "edi_ref": "3148",
+          "edi_order": 2,
+          "description": "Code specifying the type of communication address. [ (AL) Cellular phone, (AM) International telephone direct line, (EM) Electronic mail, (MA) Mail ]",
+          "type": "string",
+          "required": true,
+          "maxLength": 3
+        }
+      }
+    },
+    "DOC": {
+      "title": "Document/Message Details",
+      "edi_tag": "DOC",
+      "edi_ref": "C002",
+      "type": "object",
+      "required": true,
+      "properties": {
+        "messageName": {
+          "title": "Document / Message Name",
+          "edi_ref": "C002",
+          "edi_order": 1,
+          "description": "Identification of a type of document/message by code or name. Code preferred.",
+          "type": "object",
+          "properties": {
+            "documentNameCode": {
+              "title": "Document Name Code",
+              "edi_ref": "1001",
+              "edi_order": 1,
+              "description": "Code specifying the document name.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListIdentificationCode": {
+              "title": "Code List Identification Code",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "description": "Code identifying a user or association maintained code list.",
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListResponsibleAgencyCode": {
+              "title": "Code List Responsible Agency Code",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "description": "Code specifying the agency responsible for a code list.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "documentName": {
+              "title": "Document Name",
+              "edi_ref": "1000",
+              "edi_order": 4,
+              "description": "Name of Document.",
+              "type": "string",
+              "maxLength": 35
+            }
+          }
+        },
+        "documentMessageDetails": {
+          "title": "Document / Message Name",
+          "edi_ref": "C503",
+          "edi_order": 2,
+          "description": "Identification of document/message by number, status, source and/or language.",
+          "type": "object",
+          "properties": {
+            "documentIdentifier": {
+              "title": "Document Identifier",
+              "edi_ref": "1004",
+              "edi_order": 1,
+              "description": "To identify a document.",
+              "type": "string",
+              "maxLength": 70
+            },
+            "documentStatusCode": {
+              "title": "Document Status Code",
+              "edi_ref": "1373",
+              "edi_order": 2,
+              "description": "Code specifying the status of a document.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "documentSourceDescription": {
+              "title": "Document Source Description",
+              "edi_ref": "1366",
+              "edi_order": 3,
+              "description": "Free form description of the source of a document.",
+              "type": "string",
+              "maxLength": 70
+            },
+            "languageNameCode": {
+              "title": "Language Name Code",
+              "edi_ref": "3453",
+              "edi_order": 4,
+              "description": "Code specifying the language name.",
+              "type": "string",
+              "maxLength": 3
+            },
+            "versionIdentifier": {
+              "title": "Version Identifier",
+              "edi_ref": "1056",
+              "edi_order": 5,
+              "description": "To identify a version.",
+              "type": "string",
+              "maxLength": 9
+            },
+            "revisionIdentifier": {
+              "title": "Revision Identifier",
+              "edi_ref": "1060",
+              "edi_order": 6,
+              "description": "Revision identifier.",
+              "type": "string",
+              "maxLength": 6
+            }
+          }
+        },
+        "comunicationMediumTypeCode": {
+          "title": "Communication Medium Type Code",
+          "edi_ref": "3153",
+          "edi_order": 3,
+          "description": "Code specifying the type of communication medium.",
+          "type": "string",
+          "maxLength": 3
+        },
+        "documentCopiesRequiredQuantity": {
+          "title": "Document Copies Required Quantity",
+          "edi_ref": "1220",
+          "edi_order": 4,
+          "description": "Quantity of document copies required.",
+          "type": "integer",
+          "maximum": 99
+        },
+        "documentOriginalRequiredQuantity": {
+          "title": "Document Original Required Quantity",
+          "edi_ref": "1218",
+          "edi_order": 5,
+          "description": "Quantity of document originals required.",
+          "type": "integer",
+          "maximum": 99
+        }
+      }
+    },
+    "UNT": {
+      "title": "Message Trailer",
+      "edi_tag": "UNT",
+      "type": "object",
+      "required": true,
+      "properties": {
+        "numberOfSegmentsInMessage": {
+          "title": "Number of Segments in message",
+          "edi_ref": "0074",
+          "edi_order": 1,
+          "description": "Control count of number of segments in a message.",
+          "type": "integer",
+          "maximum": 999999
+        },
+        "messageReferenceNumber": {
+          "title": "Message Reference Number",
+          "edi_ref": "0062",
+          "edi_order": 2,
+          "description": "Unique message reference assigned by the sender",
+          "type": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 14
+        }
+      }
+    },
+
+    "UNZ": {
+      "title": "Interchange Trailer",
+      "edi_tag": "UNZ",
+      "type": "object",
+      "properties": {
+        "interchangeControlCount": {
+          "title": "Interchange Control Count",
+          "edi_ref": "0036",
+          "edi_order": 1,
+          "description": "Count either of the number of messages or, if used, of the number of functional groups in an interchange.",
+          "type": "integer",
+          "maximum": 1,
+          "minimum": 1
+        },
+        "interchangeControlReference": {
+          "title": "Interchange Control Reference",
+          "edi_ref": "0020",
+          "edi_order": 2,
+          "description": "Unique reference assigned by the sender to an interchange.",
+          "type": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 14
+        }
+      }
+    },
+
+
+
+    "CCI": {
+      "title": "Characteristic/Class Id",
+      "edi_tag": "CCI",
+      "type": "object",
+      "properties": {
+        "propertyClassCoded": {
+          "title": "Property Class, Coded",
+          "edi_ref": "7059",
+          "edi_order": 1,
+          "type": "string",
+          "maxLength": 3
+        },
+        "measurementDetails": {
+          "title": "Measurement Details",
+          "edi_ref": "C502",
+          "edi_order": 2,
+          "type": "object",
+          "properties": {
+            "propertyMeasuredCoded ": {
+              "title": "Property Measured, Coded",
+              "edi_ref": "6313",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 3
+            },
+            "measurementSignificanceCoded": {
+              "title": "Measurement Significance, Coded",
+              "edi_ref": "6321",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "measurementAttributeIdentification": {
+              "title": "Measurement Attribute Identification",
+              "edi_ref": "6155",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 17
+            },
+            "measurementAttribute ": {
+              "title": "Measurement Attribute",
+              "edi_ref": "6154",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 70
+            }
+          }
+        },
+
+        "productCharacteristic": {
+          "title": "Product Characteristic",
+          "edi_ref": "C240",
+          "edi_order": 3,
+          "type": "object",
+          "properties": {
+            "characteristicIdentification": {
+              "title": "Characteristic Identification",
+              "edi_ref": "7037",
+              "edi_order": 1,
+              "type": "string",
+              "required": true,
+              "maxLength": 17
+            },
+            "codeListQualifier": {
+              "title": "Code List Qualifier",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "characteristic": {
+              "title": "Characteristic",
+              "edi_ref": "7036",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 35
+            },
+            "characteristic": {
+              "title": "Characteristic",
+              "edi_ref": "7036",
+              "edi_order": 5,
+              "type": "string",
+              "maxLength": 35
+            }
+          }
+        },
+
+        "characteristicRelevanceCoded": {
+          "title": "Characteristic Relevance, Coded",
+          "edi_ref": "4051",
+          "edi_order": 4,
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+
+
+
+
+
+    "LIN": {
+      "title": "LINE ITEM",
+      "edi_tag": "LIN",
+      "type": "object",
+      "required": true,
+      "properties": {
+
+        "lineItemNumber": {
+          "title": "LINE ITEM NUMBER",
+          "edi_ref": "1082",
+          "edi_order": 1,
+          "type": "string",
+          "maxLength": 6
+        },
+        "actionRequestNotificationCoded": {
+          "title": "ACTION REQUEST/NOTIFICATION, CODED",
+          "edi_ref": "1229",
+          "edi_order": 2,
+          "type": "string",
+          "required": true,
+          "maxLength": 3
+        },
+
+        "itemNumberIdentification": {
+          "title": "ITEM NUMBER IDENTIFICATION",
+          "edi_ref": "C212",
+          "edi_order": 3,
+          "type": "object",
+          "properties": {
+            "itemNumber": {
+              "title": "Item Number",
+              "edi_ref": "7140",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 35
+            },
+            "itemNumberTypeCoded": {
+              "title": "Item Number Type, Coded",
+              "edi_ref": "7143",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListQualifier": {
+              "title": "Code List Qualifier",
+              "edi_ref": "1131",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+
+        "sublineInformation": {
+          "title": "SUB-LINE INFORMATION",
+          "edi_ref": "C829",
+          "edi_order": 4,
+          "type": "object",
+          "properties": {
+            "subLineIndicatorCoded": {
+              "title": "Sub-line Indicator, Coded",
+              "edi_ref": "5495",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 3
+            },
+            "lineItemNumber": {
+              "title": "Line Item Number",
+              "edi_ref": "1082",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 6
+            }
+          }
+        },
+
+        "configurationLevel": {
+          "title": "CONFIGURATION LEVEL",
+          "edi_ref": "1222",
+          "edi_order": 5,
+          "type": "integer",
+          "maxLength": 2
+        },
+
+        "configurationCoded": {
+          "title": "CONFIGURATION, CODED",
+          "edi_ref": "7083",
+          "edi_order": 6,
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+
+
+
+    "PIA": {
+      "title": "ADDITIONAL PRODUCT ID",
+      "edi_tag": "PIA",
+      "type": "object",
+      "properties": {
+
+
+        "productIdFunctionQualifier": {
+          "title": "PRODUCT ID. FUNCTION QUALIFIER",
+          "edi_ref": "4347",
+          "edi_order": 1,
+          "type": "string",
+          "required": true,
+          "maxLength": 3
+        },
+
+
+
+        "itemNumberIdentification": {
+          "title": "ITEM NUMBER IDENTIFICATION",
+          "edi_ref": "C212",
+          "edi_order": 2,
+          "type": "object",
+          "required": true,
+          "properties": {
+            "itemNumber": {
+              "title": "Item Number",
+              "edi_ref": "7140",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 35
+            },
+            "itemNumberTypeCoded": {
+              "title": "Item Number Type, Coded",
+              "edi_ref": "7143",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListQualifier": {
+              "title": "Code List Qualifier",
+              "edi_ref": "1131",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+
+
+
+        "itemNumberIdentification": {
+          "title": "ITEM NUMBER IDENTIFICATION",
+          "edi_ref": "C212",
+          "edi_order": 3,
+          "type": "object",
+          "properties": {
+            "itemNumber": {
+              "title": "Item Number",
+              "edi_ref": "7140",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 35
+            },
+            "itemNumberTypeCoded": {
+              "title": "Item Number Type, Coded",
+              "edi_ref": "7143",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListQualifier": {
+              "title": "Code List Qualifier",
+              "edi_ref": "1131",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+
+
+
+        "itemNumberIdentification": {
+          "title": "ITEM NUMBER IDENTIFICATION",
+          "edi_ref": "C212",
+          "edi_order": 4,
+          "type": "object",
+          "properties": {
+            "itemNumber": {
+              "title": "Item Number",
+              "edi_ref": "7140",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 35
+            },
+            "itemNumberTypeCoded": {
+              "title": "Item Number Type, Coded",
+              "edi_ref": "7143",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListQualifier": {
+              "title": "Code List Qualifier",
+              "edi_ref": "1131",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+
+
+
+        "itemNumberIdentification": {
+          "title": "ITEM NUMBER IDENTIFICATION",
+          "edi_ref": "C212",
+          "edi_order": 5,
+          "type": "object",
+          "properties": {
+            "itemNumber": {
+              "title": "Item Number",
+              "edi_ref": "7140",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 35
+            },
+            "itemNumberTypeCoded": {
+              "title": "Item Number Type, Coded",
+              "edi_ref": "7143",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListQualifier": {
+              "title": "Code List Qualifier",
+              "edi_ref": "1131",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+
+
+
+        "itemNumberIdentification": {
+          "title": "ITEM NUMBER IDENTIFICATION",
+          "edi_ref": "C212",
+          "edi_order": 6,
+          "type": "object",
+          "properties": {
+            "itemNumber": {
+              "title": "Item Number",
+              "edi_ref": "7140",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 35
+            },
+            "itemNumberTypeCoded": {
+              "title": "Item Number Type, Coded",
+              "edi_ref": "7143",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListQualifier": {
+              "title": "Code List Qualifier",
+              "edi_ref": "1131",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        }
+      }
+    },
+
+
+
+
+    "IMD": {
+      "title": "ITEM DESCRIPTION",
+      "edi_tag": "IMD",
+      "type": "object",
+      "properties": {
+        "itemDescriptionTypeCoded": {
+          "title": "ITEM DESCRIPTION TYPE, CODED",
+          "edi_ref": "7077",
+          "edi_order": 1,
+          "type": "string",
+          "maxLength": 3
+        },
+
+        "itemCharacteristic": {
+          "title": "ITEM CHARACTERISTIC",
+          "edi_ref": "C272",
+          "edi_order": 2,
+          "type": "object",
+          "properties": {
+            "itemCharacteristicCoded": {
+              "title": "Item Characteristic, Coded",
+              "edi_ref": "7081",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 3
+            },
+            "codeListQualifier": {
+              "title": "Code list qualifier",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "CodeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+
+        "itemDescription": {
+          "title": "ITEM DESCRIPTION",
+          "edi_ref": "C273",
+          "edi_order": 3,
+          "type": "object",
+          "properties": {
+            "itemDescriptionIdentification": {
+              "title": "Item description identification",
+              "edi_ref": "7081",
+              "edi_order": 1,
+              "type": "string",
+              "maxLength": 17
+            },
+            "codeListQualifier": {
+              "title": "Code list qualifier",
+              "edi_ref": "1131",
+              "edi_order": 2,
+              "type": "string",
+              "maxLength": 3
+            },
+            "CodeListResponsibleAgencyCoded": {
+              "title": "Code List Responsible Agency, Coded",
+              "edi_ref": "3055",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+            "itemDescription": {
+              "title": "Item Description",
+              "edi_ref": "7008",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 256
+            },
+            "itemDescription": {
+              "title": "Item Description",
+              "edi_ref": "7008",
+              "edi_order": 5,
+              "type": "string",
+              "maxLength": 256
+            },
+            "languageCoded": {
+              "title": "Language, Coded",
+              "edi_ref": "3453",
+              "edi_order": 6,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        },
+
+        "surfaceLayerIndicatorCoded": {
+          "title": "SURFACE/LAYER INDICATOR, CODED",
+          "edi_ref": "7383",
+          "edi_order": 4,
+          "type": "string",
+          "maxLength": 3
+        }
+      }
+    },
+
+
+
+
+    "PRI": {
+      "title": "PRICE DETAILS",
+      "edi_tag": "PRI",
+      "type": "object",
+      "properties": {
+
+        "priceInformation": {
+          "title": "PRICE INFORMATION",
+          "edi_ref": "C509",
+          "edi_order": 1,
+          "type": "object",
+          "properties": {
+            "priceQualifier": {
+              "title": "Price Qualifier",
+              "edi_ref": "5125",
+              "edi_order": 1,
+              "type": "string",
+              "required": true,
+              "maxLength": 3
+            },
+            "price": {
+              "title": "Price",
+              "edi_ref": "5118",
+              "edi_order": 2,
+              "type": "decimal",
+              "maxLength": 15
+            },
+            "priceTypeCoded": {
+              "title": "Price type, coded",
+              "edi_ref": "5375",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+
+            "priceTypeQualifier": {
+              "title": "Price type qualifier",
+              "edi_ref": "5387",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            },
+
+            "unitPriceBasis ": {
+              "title": "Unit Price Basis",
+              "edi_ref": "5284",
+              "edi_order": 5,
+              "type": "decimal",
+              "maxLength": 9
+            },
+            "measureUnitQualifier": {
+              "title": "Measure Unit Qualifier",
+              "edi_ref": "6411",
+              "edi_order": 6,
+              "type": "string",
+              "maxLength": 3
+            }
+
+          }
+        },
+
+
+
+        "subLinePiceChangeCoded": {
+          "title": "SUB-LINE PRICE CHANGE, CODED",
+          "edi_ref": "5213",
+          "edi_order": 2,
+          "type": "string",
+          "maxLength": 3
+        }
+
+      }
+    },
+
+
+
+
+
+    "MOA": {
+      "title": "MONETARY AMOUNT",
+      "edi_tag": "MOA",
+      "type": "object",
+      "properties": {
+
+
+        "monetaryAmount": {
+          "title": "MONETARY AMOUNT",
+          "edi_ref": "C516",
+          "edi_order": 1,
+          "type": "object",
+          "required": true,
+          "properties": {
+            "monetaryAmountTypeQualifier": {
+              "title": "Monetary Amount Type Qualifier",
+              "edi_ref": "5025",
+              "edi_order": 1,
+              "type": "string",
+              "required": true,
+              "maxLength": 3
+            },
+            "monetaryAmount": {
+              "title": "Monetary Amount",
+              "edi_ref": "5004",
+              "edi_order": 2,
+              "type": "decimal",
+              "maxLength": 35
+            },
+            "currencyCoded": {
+              "title": "Currency, Coded",
+              "edi_ref": "6345",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            },
+
+            "currencyQualifier": {
+              "title": "Currency Qualifier",
+              "edi_ref": "6343",
+              "edi_order": 4,
+              "type": "string",
+              "maxLength": 3
+            },
+
+            "statusCoded ": {
+              "title": "Status, coded",
+              "edi_ref": "4405",
+              "edi_order": 5,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+        }
+      }
+    },
+
+    "QTY": {
+          "title": "QUANTITY DETAILS",
+          "edi_ref": "C186",
+          "edi_order": 1,
+          "type": "object",
+          "edi_tag": "QTY",
+          "properties": {
+            "qualifier": {
+              "title": "Quantity Qualifier",
+              "edi_ref": "6063",
+              "edi_order": 1,
+              "type": "string",
+              "required": true,
+              "maxLength": 3
+            },
+            "amount": {
+              "title": "Amount",
+              "edi_ref": "6060",
+              "edi_order": 2,
+              "type": "decimal",
+              "required": true,
+              "maxLength": 15
+            },
+            "unit": {
+              "title": "Measure Unit Qualifier",
+              "edi_ref": "6411",
+              "edi_order": 3,
+              "type": "string",
+              "maxLength": 3
+            }
+          }
+    }
+  }
+}
